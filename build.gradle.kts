@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.6.10"
     java
 }
 
@@ -13,4 +13,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     api("net.mamoe", "mirai-core", "2.11.0")
+}
+
+tasks.withType<JavaCompile>() {
+    options.encoding = "UTF-8"
 }

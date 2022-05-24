@@ -4,15 +4,23 @@ import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.contact.Friend;
 import net.mamoe.mirai.event.events.FriendMessageEvent;
 
-public class FriendChatFrame extends ChatFrame {
-    private final Friend contact;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
+public class FriendChatFrame extends ChatFrame {
     public FriendChatFrame(Friend friend, Bot bot) {
         super(friend, bot);
-        this.contact = friend;
+        this.setTitle(friend.getNick());
+
+        var simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+
         bot.getEventChannel().subscribeAlways(FriendMessageEvent.class, e -> {
-            if (e.getSubject() != this.contact) return;
-            // TODO Render Message
+            if (e.getSubject() != friend) return;
+            this.txtMessageArea.append(String.format("%s %s\n", e.getSenderName(), simpleDateFormat.format(new Date(System.currentTimeMillis()))));
+            this.txtMessageArea.append(e.getMessage().contentToString());
+            this.txtMessageArea.append("\n");
         });
     }
 }
