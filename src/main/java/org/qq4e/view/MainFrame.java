@@ -4,11 +4,14 @@ import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.event.events.MessageEvent;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame extends JFrame {
     public MainFrame(Bot bot) {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(300, 900);
+        var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(300, screenSize.height * 3 / 4);
+        this.setLocation(screenSize.width - 300, 0);
         this.setTitle("QQ for E");
 
         var chatTabs = new JTabbedPane();

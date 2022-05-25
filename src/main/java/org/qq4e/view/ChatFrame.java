@@ -16,6 +16,7 @@ public abstract class ChatFrame extends JFrame {
     public ChatFrame(Contact contact, Bot bot) {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setSize(800, 600);
+        this.setLocationRelativeTo(null);
 
         var simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -24,11 +25,9 @@ public abstract class ChatFrame extends JFrame {
 
         this.txtMessageArea = new JTextArea();
         this.txtMessageArea.setEditable(false);
-        this.txtMessageArea.setSize(800, 400);
         this.add(txtMessageArea, BorderLayout.NORTH);
 
         var txtSendingArea = new JTextArea();
-        txtSendingArea.setSize(800, 150);
         this.add(txtSendingArea, BorderLayout.CENTER);
 
         var btnSend = new JButton("发送");

@@ -10,24 +10,26 @@ import java.awt.*;
 public class LoginFrame extends JFrame {
     public LoginFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         this.setSize(400, 300);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("登录 QQ for E");
 
-        this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+        this.setLayout(new GridLayout(3, 1));
 
         var panelId = new JPanel(new FlowLayout());
         var txtId = new JTextField();
         txtId.setColumns(16);
         panelId.add(new JLabel("登录"));
         panelId.add(txtId);
+        this.add(panelId);
 
         var panelPwd = new JPanel(new FlowLayout());
         var txtPwd = new JPasswordField();
         txtPwd.setColumns(16);
         panelPwd.add(new JLabel("密码"));
         panelPwd.add(txtPwd);
+        this.add(panelPwd);
 
         var panelBtn = new JPanel(new FlowLayout());
         var btnLogin = new JButton("登录");
@@ -47,10 +49,8 @@ public class LoginFrame extends JFrame {
             }).start();
         });
         panelBtn.add(btnLogin);
-
-        this.add(panelId);
-        this.add(panelPwd);
         this.add(panelBtn);
+
         this.setVisible(true);
     }
 }
