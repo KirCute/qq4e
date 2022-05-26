@@ -28,7 +28,7 @@ public abstract class ChatFrame extends JFrame {
         this.txtMessageArea = new JTextArea();
         this.txtMessageArea.setEditable(false);
         this.txtMessageAreaScrollPane = new JScrollPane(this.txtMessageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        this.chatPanel.add(this.txtMessageAreaScrollPane, new GridBagConstraints(0, 0, 5, 36, 1, 0.75,
+        this.chatPanel.add(this.txtMessageArea, new GridBagConstraints(0, 0, 5, 36, 1, 0.75,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         var txtSendingArea = new JTextArea();

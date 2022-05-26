@@ -41,12 +41,12 @@ public class GroupChatFrame extends ChatFrame {
 
         bot.getEventChannel().subscribeAlways(GroupMessageEvent.class, e -> {
             if (e.getSubject() != contact) return;
-            var vertical = this.txtMessageAreaScrollPane.getVerticalScrollBar();
-            var autoScroll = vertical.getValue() == vertical.getMaximum();
+            //var vertical = this.txtMessageAreaScrollPane.getVerticalScrollBar();
+            //var autoScroll = vertical.getValue() + vertical.getVisibleAmount() >= vertical.getMaximum();
             this.txtMessageArea.append(String.format("%s %s\n", e.getSenderName(), simpleDateFormat.format(new Date(System.currentTimeMillis()))));
             this.txtMessageArea.append(e.getMessage().contentToString());
             this.txtMessageArea.append("\n");
-            if (autoScroll) vertical.setValue(vertical.getMaximum());
+            //if (autoScroll) vertical.setValue(vertical.getMaximum() - vertical.getVisibleAmount());
         });
 
         this.add(functionTabs);

@@ -20,7 +20,7 @@ public class LoginFrame extends JFrame {
         var panelId = new JPanel(new FlowLayout());
         var txtId = new JTextField();
         txtId.setColumns(16);
-        panelId.add(new JLabel("登录"));
+        panelId.add(new JLabel("账号"));
         panelId.add(txtId);
         this.add(panelId);
 
@@ -42,7 +42,7 @@ public class LoginFrame extends JFrame {
                     bot.login();
                     new MainFrame(bot);
                     this.dispose();
-                } catch (LoginFailedException ex) {
+                } catch (Exception ex) {
                     // TODO Display Error Message
                     btnLogin.setEnabled(true);
                 }
