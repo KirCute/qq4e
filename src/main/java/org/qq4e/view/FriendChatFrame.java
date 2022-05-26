@@ -18,9 +18,16 @@ public class FriendChatFrame extends ChatFrame {
 
         bot.getEventChannel().subscribeAlways(FriendMessageEvent.class, e -> {
             if (e.getSubject() != friend) return;
+            var vertical = this.txtMessageAreaScrollPane.getVerticalScrollBar();
+            var autoScroll = vertical.getValue() == vertical.getMaximum();
+            System.out.println(vertical.getValue() * 1000000 + vertical.getMaximum());
+            // FIXME
             this.txtMessageArea.append(String.format("%s %s\n", e.getSenderName(), simpleDateFormat.format(new Date(System.currentTimeMillis()))));
             this.txtMessageArea.append(e.getMessage().contentToString());
             this.txtMessageArea.append("\n");
+            if (autoScroll) vertical.setValue(vertical.getMaximum());
         });
+
+        this.add(chatPanel);
     }
 }

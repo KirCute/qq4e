@@ -12,6 +12,8 @@ import java.util.TimeZone;
 
 public abstract class ChatFrame extends JFrame {
     protected final JTextArea txtMessageArea;
+    protected final JScrollPane txtMessageAreaScrollPane;
+    protected final JPanel chatPanel;
 
     public ChatFrame(Contact contact, Bot bot) {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -21,14 +23,18 @@ public abstract class ChatFrame extends JFrame {
         var simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 
-        this.setLayout(new BorderLayout());
+        this.chatPanel = new JPanel(new GridBagLayout());
 
         this.txtMessageArea = new JTextArea();
         this.txtMessageArea.setEditable(false);
-        this.add(txtMessageArea, BorderLayout.NORTH);
+        this.txtMessageAreaScrollPane = new JScrollPane(this.txtMessageArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        this.chatPanel.add(this.txtMessageAreaScrollPane, new GridBagConstraints(0, 0, 5, 36, 1, 0.75,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         var txtSendingArea = new JTextArea();
-        this.add(txtSendingArea, BorderLayout.CENTER);
+        this.chatPanel.add(new JScrollPane(txtSendingArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
+                new GridBagConstraints(0, 36, 5, 12, 1, 0.25,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         var btnSend = new JButton("发送");
         btnSend.setSize(800, 50);
@@ -46,7 +52,8 @@ public abstract class ChatFrame extends JFrame {
             this.txtMessageArea.append("\n");
             txtSendingArea.setText("");
         });
-        this.add(btnSend, BorderLayout.SOUTH);
+        this.chatPanel.add(btnSend, new GridBagConstraints(4, 48, 1, 1, 0, 0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         this.setVisible(true);
     }
