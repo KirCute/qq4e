@@ -42,7 +42,7 @@ public class LoginFrame extends JFrame {
                     bot.login();
                     new MainFrame(bot);
                     this.dispose();
-                } catch (Exception ex) {
+                } catch (LoginFailedException ex) {
                     // TODO Display Error Message
                     btnLogin.setEnabled(true);
                 }
